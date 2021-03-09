@@ -33,16 +33,8 @@ namespace MyAntennaNeverGoesOffline
      
         [KSPField]
         public float mitAmount = 0F;
-      
-        [KSPField]
-        public double globalRC = 0;
-     
-        [KSPField]
-        public double meanRC = 0;
-      
-        [KSPField]
-        public double newPowerPercentage;
 
+ 
         public void Start()
         {
             if (HighLogic.LoadedSceneIsFlight)
@@ -57,12 +49,12 @@ namespace MyAntennaNeverGoesOffline
                     {
                         if (parts.HasModuleImplementing<ModuleDataTransmitter>())
                         {
-                            listOfAntennae.Add(parts);                                  // add data transmitters to a list
+                            listOfAntennae.Add(parts);
                         }
 
                         if (parts.HasModuleImplementing<ModuleDeployableSolarPanel>() || parts.HasModuleImplementing<ModuleGenerator>())
                         {
-                            listOfGenerators.Add(parts);                                // add generators to a list
+                            listOfGenerators.Add(parts);
                         }
                     }
 
@@ -70,12 +62,10 @@ namespace MyAntennaNeverGoesOffline
                     {
                         nBOfAntennae = listOfAntennae.Count();
                     }
-
                     catch
                     {
                         nBOfAntennae = 0;
                     }
-
                     try
                     {
                         nBOfGenerators = listOfGenerators.Count();
@@ -91,55 +81,41 @@ namespace MyAntennaNeverGoesOffline
                     }
                     else processorPermitted = false;
 
-
                     if (processorPermitted)
                     {
-                        foreach (var part in listOfAntennae)                        // add each packet resource cost to the running total
+                        foreach (var part in listOfAntennae)
                         {
-                            globalRC += part.GetComponent<ModuleDataTransmitter>().packetResourceCost;
-                            part.GetComponent<ModuleDataTransmitter>().packetResourceCost = 0.1F;       // then set low to prevent timeout
+                            part.GetComponent<ModuleDataTransmitter>().packetResourceCost = 0.1F;       // buff antennae
                         }
 
-                        meanRC = globalRC / nBOfAntennae;                                           // get the average resource cost
-
-                        foreach (var sp in listOfGenerators)
+                        foreach (var part in listOfGenerators)
                         {
-                            if (sp.HasModuleImplementing<ModuleDeployableSolarPanel>())
+                            if (part.HasModuleImplementing<ModuleDeployableSolarPanel>())
                             {
-                                powerGen += sp.GetComponent<ModuleDeployableSolarPanel>().chargeRate;
+                                float chargeR = part.GetComponent<ModuleDeployableSolarPanel>().chargeRate;
+                                powerGen += chargeR;
+                                chargeR = (chargeR / 100) * 75;    // nerf solar panels to balance 
                             }
                             else
-                            {                                                           // add each generator's charge rate together
-                                powerGen += 0.75F;
+                            {
+                                continue; // is RTG; processor can't use low power generation by design (forces solar panel useage)
                             }
                         }
 
-                        MangoUtility mU = new MangoUtility(powerGen, meanRC);           // send to utilities
-                        newRate = mU.SetTime();                                         // get revised rates back
-                        newPowerPercentage = mU.SetRate();
+                        MangoUtility mU = new MangoUtility(powerGen);
+                        newRate = mU.SetTime();
 
                         foreach (var antenna in listOfAntennae)
                         {
                             antenna.GetComponent<ModuleDataTransmitter>().packetInterval = newRate;        // change antennae rates using
                         }                                                                                   // new rate
-
-                        foreach (var part in FlightGlobals.ActiveVessel.Parts)
-                        {
-                            if (part.Resources.Contains("ElectricCharge"))
-                            {
-                                double elecAmt = part.Resources.Get("ElectricCharge").amount;
-                                elecAmt -= newPowerPercentage;
-                                part.Resources.Get("ElectricCharge").amount = elecAmt;                  // take a 'payment' of electricity
-                            }
-                        }
                     }
                 }
+                catch
+                { //internal error
+                }
 
-
-                catch { //"not in flight & not being handled correctly"                     // sometimes Editor scene throws Exception 
-                }                                                                           // even though it shouldn't. Good old Unity.
-
-            }
+            }            
         }
 
 
