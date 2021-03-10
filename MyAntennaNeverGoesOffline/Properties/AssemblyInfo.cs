@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MyAntennaNeverGoesOffline")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("KSP Addon")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyAntennaNeverGoesOffline")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright © 2021 James Ford (FruitGoose)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
