@@ -38,7 +38,7 @@ FAQ
 - Why don't I just use "mod x/y/z" that lets me send stuff without penalty already?
 
   This mod doesn't turn on infinate electricity in the cheat menu like some, it is designed to adjust 
-  the transmission mechanics of the game to be less spammy.
+  the transmission mechanics of the game to be less "no power spammy".
   
 - Hey! I ran out of electric and got the power message spam! You're useless!
 
@@ -46,7 +46,7 @@ FAQ
   more successfully than not, it still requires electricity. If you have no solar panels/antennae then the
   mod disables itself. Likewise, if you have those components but your current stored electrical capacity 
   is very low, it will run out of electricity as normal. It is recommended to keep an additional battery on 
-  the vessel to allow for a 'reserve' when in darkness and keep the function working correctly.
+  the vessel to allow for a 'reserve' when in darkness and keep the MANGO abilities working correctly.
   
   
   LICENCE
