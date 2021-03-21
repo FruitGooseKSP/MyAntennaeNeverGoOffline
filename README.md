@@ -4,7 +4,9 @@ DESCRIPTION
 
 This is a mini-mod that attempts to rebalance the transmission of science data. I personally got 
 abosolutely sick to death of seeing the "not enough power! antenna retracting!" spam message 
-everytime I tried to send something.
+everytime I tried to send something. What bugged me the most was why would any space agency use 
+an antenna that is incapable of transmitting the data it needs? Would they use an engine that can't 
+always get into orbit? Or it can but only if the wind's blowing a certain way?
 
 In a nutshell, this mod looks at the vessel and checks the number of solar panels and their 
 ability to generate electricity, as well as the number/type of antennae and their ability 
