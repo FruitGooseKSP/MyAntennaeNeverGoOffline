@@ -77,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MANGO.cs" />
+    <Compile Include="MangoAntenna.cs" />
+    <Compile Include="MangoSolar.cs" />
     <Compile Include="MangoUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

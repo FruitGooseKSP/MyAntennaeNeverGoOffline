@@ -19,7 +19,7 @@ namespace MyAntennaNeverGoesOffline
         {
             float maxPermitted = 100.0F;        // ie 100%
             float minPermitted = 0.001F;          // ie 0.001% (basically not 0)
-            float baseAdjustment = 0.10F / 100.0F;      // for balancing...
+            float baseAdjustment = 0F;      // for balancing...
 
             if (electricalGenerationFactor >= maxPermitted)         // if greater than 100% use 100%
             {
@@ -33,8 +33,11 @@ namespace MyAntennaNeverGoesOffline
             }
             else
             {
-                factoredTime = electricalGenerationFactor * baseAdjustment;     // or use factor * 0.001 (adjustment) to give factored time.
-                return factoredTime;
+                factoredTime = (200.0f - electricalGenerationFactor) * 0.01f;
+                    
+                    //electricalGenerationFactor * baseAdjustment;     // or use factor * 0.001 (adjustment) to give factored time.
+                
+                    return factoredTime;
             }
 
         }
