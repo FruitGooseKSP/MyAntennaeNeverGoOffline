@@ -29,7 +29,7 @@ INSTRUCTIONS
 - if you have NO solar panels / antennae onboard, the mod will disable itself.
 - simply transmit your data as normal. Assuming you have some power and the conditions above are met, 
   the transmission should go through but will take longer than normal.
-- when you unlock the top end solar panels / antennae, you will find the transmissions go through as 
+- when you unlock the top end solar panels / antennae, you may find the transmissions go through as 
   quickly as stock. This is by design and reflects the fact you probably have less science to 
   transmit anyway now.
   
@@ -47,6 +47,10 @@ FAQ
   mod disables itself. Likewise, if you have those components but your current stored electrical capacity 
   is very low, it will run out of electricity as normal. It is recommended to keep an additional battery on 
   the vessel to allow for a 'reserve' when in darkness and keep the MANGO abilities working correctly.
+  
+  DEPENDENCIES
+  
+  ModuleManager by Sarbian & Blowfish
   
   
   LICENCE
