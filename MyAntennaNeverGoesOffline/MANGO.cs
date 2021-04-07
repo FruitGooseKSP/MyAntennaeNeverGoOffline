@@ -45,14 +45,16 @@ namespace MyAntennaNeverGoesOffline
                     listOfAntennae = new List<Part>();
                     listOfGenerators = new List<Part>();
 
+                    // add solar panels and antennae to lists
+
                     foreach (var parts in FlightGlobals.ActiveVessel.Parts)
                     {
-                        if (parts.HasModuleImplementing<ModuleDataTransmitter>())
+                        if (parts.HasModuleImplementing<MangoAntenna>())
                         {
                             listOfAntennae.Add(parts);
                         }
 
-                        if (parts.HasModuleImplementing<ModuleDeployableSolarPanel>() || parts.HasModuleImplementing<ModuleGenerator>())
+                        if (parts.HasModuleImplementing<MangoSolar>())
                         {
                             listOfGenerators.Add(parts);
                         }
@@ -92,9 +94,15 @@ namespace MyAntennaNeverGoesOffline
                         {
                             if (part.HasModuleImplementing<ModuleDeployableSolarPanel>())
                             {
+                                
                                 float chargeR = part.GetComponent<ModuleDeployableSolarPanel>().chargeRate;
                                 powerGen += chargeR;
-                                chargeR = (chargeR / 100) * 75;    // nerf solar panels to balance 
+                                part.GetComponent<ModuleDeployableSolarPanel>().chargeRate = (chargeR / 100) * 75;    // nerf solar panels to balance 
+
+                                
+                                
+
+                                
                             }
                             else
                             {
