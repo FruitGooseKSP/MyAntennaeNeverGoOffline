@@ -45,6 +45,8 @@ namespace MyAntennaNeverGoesOffline
                     listOfAntennae = new List<Part>();
                     listOfGenerators = new List<Part>();
 
+                    // add solar panels and antennae to lists
+
                     foreach (var parts in FlightGlobals.ActiveVessel.Parts)
                     {
                         if (parts.HasModuleImplementing<MangoAntenna>())
